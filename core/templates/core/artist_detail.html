@@ -5,9 +5,10 @@
         <p>From: {{ object.location }}</h1>
     </div>
     <p>{{ object.description }}</p>
-    <ul>
+    <h4>Tags</h4>
+    <ul class="list-inline">
         {% for tag in object.tags.all %}
-        <li>{{ tag }}</li>
+        <li><span class="badge">{{tag}}</span></li>
         {% endfor %}
     </ul>
 </div>

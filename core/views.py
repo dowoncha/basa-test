@@ -55,8 +55,9 @@ def list_artists(request):
   serialized_artists = serializers.serialize('json', artists, use_natural_foreign_keys=True)
 
   return JsonResponse({
-    'total': paginator.count,
-    'pages': paginator.num_pages,
+    'totalItems': paginator.count,
+    'totalPages': paginator.num_pages,
+    'currentPage': page,
     'artists': serialized_artists
   })
 
