@@ -6,9 +6,10 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Run migrations
+Run migrations and create a superuser to login to admin
 ```
 python manage.py migrate
+python manage.py createsuperuser
 ```
 
 # Run

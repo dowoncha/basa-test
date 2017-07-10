@@ -27,37 +27,36 @@ def list_artists(request):
   search_string = request.GET.get('search', None)
   search_terms = search_string.split(' ')
 
-  print(search_terms)
-  
+  # Get all artists
   artists_query = Artist.objects.all()
 
+  # Create search query by matching terms to both name and tags
   q = Q(name__icontains=search_terms[0]) | Q(tags__name__icontains=search_terms[0])
   for term in search_terms[1:]:
     q.add((Q(name__icontains=term) | Q(tags__name__icontains=term)), q.connector)
 
-  print(q)
-
+  # Filter artists
   artists_model = artists_query.filter(q).distinct()
-  print(artists_model)
 
   # Get query page number or default to 1
   page = request.GET.get('page', 1)
 
   # Paginate by 10 artists per page
   paginator = Paginator(artists_model, 10)
-  try:
-    artists = paginator.page(page)
-  except PageNotAnInteger:
-    artists = paginator.page(1)
-  except EmptyPage:
-    artists = paginator.page(paginator.num_pages)
 
-  serialized_artists = serializers.serialize('json', artists, use_natural_foreign_keys=True)
+  # try:
+  #   artists = paginator.page(page)
+  # except PageNotAnInteger:
+  #   artists = paginator.page(1)
+  # except EmptyPage:
+  #   artists = paginator.page(paginator.num_pages)
+
+  serialized_artists = serializers.serialize('json', artists_model, use_natural_foreign_keys=True)
 
   return JsonResponse({
     'totalItems': paginator.count,
     'totalPages': paginator.num_pages,
-    'currentPage': page,
+    # 'currentPage': page,
     'artists': serialized_artists
   })
 

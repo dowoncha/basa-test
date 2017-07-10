@@ -2,10 +2,7 @@ $(function() {
     var currentPage = 1;
     var totalPages = 1;
 
-    $('#search').keyup(function() {
-        console.log('keyup');
-    });
-
+    // Unfinished pagination
     $(".pagination li").click(function(e) {
         e.preventDefault();
         console.log('clicked');
@@ -13,6 +10,10 @@ $(function() {
         console.log(this.id);
     });
 
+    // When the user key ups on search bar
+    // Debounce 500ms, make sure distinct search term
+    // Map the event to input value
+    // Ajax to get artists with search term
     const $search = Rx.Observable.fromEvent($('#search'), 'keyup')
         .debounceTime(500) // Wait 1 second between searches
         .distinctUntilChanged() // Search term must be distinct
@@ -26,16 +27,15 @@ $(function() {
             // Parse data string into json array
             const artists = JSON.parse(data.artists);
 
-            if (data.totalPages != totalPages) {
-                updatePages(data.totalPages);
-            }
+            // TODO: unfinished pagination
+            updatePages(data.totalPages);
 
+            // Update the artists list in table
             updateArtists(artists);
         });
 
     // Initial page load search
     $('#search').keyup();
-    updatePages(1);
 
     function updateArtists(artists) {
         $.each(artists, (_, artist) => {
@@ -55,6 +55,7 @@ $(function() {
         });
     }
 
+    // appends but does not link
     function updatePages(pages) {
         totalPages = pages;
 
