@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default panel-table">
+            <div class="panel-header">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                    <input type="search" class="form-control" id="search" placeholder="Search">
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-list" id="artist-list">
+                    <thead>
+                        <tr>
+                            <th>*</th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>Tags</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-xs-4">Page
+                        <span id="current-page"></span> of <span id="max-page"></span></div>
+                    <div class="col-xs-8">
+                        <ul class="pagination pull-right">
+                            <li><a href="#" id="previous-page">«</a></li>
+                            <!-- For each page in the result append here -->
+                            <li><a href="#" id="next-page">»</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>{{ object.name }}</h1>
+        <p>From: {{ object.location }}</h1>
+    </div>
+    <p>{{ object.description }}</p>
+    <ul>
+        {% for tag in object.tags.all %}
+        <li>{{ tag }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

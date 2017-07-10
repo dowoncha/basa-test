@@ -20,6 +20,7 @@ import core.views
 
 urlpatterns = [
     url(r'^$', core.views.index, name='index'),
+    url(r'^artists/(?P<pk>[0-9]+)/$', core.views.ArtistDetail.as_view(), name='artist-detail'),
     url(r'^api/artists/', core.views.list_artists, name='artists'),
     url(r'^admin/', admin.site.urls),
 ]
