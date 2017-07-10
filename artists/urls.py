@@ -20,5 +20,6 @@ import core.views
 
 urlpatterns = [
     url(r'^$', core.views.index, name='index'),
+    url(r'^api/artists/', core.views.list_artists, name='artists'),
     url(r'^admin/', admin.site.urls),
 ]
